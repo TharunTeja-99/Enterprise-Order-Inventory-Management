@@ -9,11 +9,25 @@ public class Product {
     private int stock;
     private String imageUrl;
 
+    // Default constructor
     public Product() {
     }
 
+    // Constructor without image URL
+    public Product(Long id, String name, String category,
+                   double price, int stock) {
+
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.price = price;
+        this.stock = stock;
+    }
+
+    // Constructor with image URL
     public Product(Long id, String name, String category,
                    double price, int stock, String imageUrl) {
+
         this.id = id;
         this.name = name;
         this.category = category;
@@ -22,6 +36,7 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
+    // Get ID
     public Long getId() {
         return id;
     }
@@ -30,6 +45,7 @@ public class Product {
         this.id = id;
     }
 
+    // Get product name
     public String getName() {
         return name;
     }
@@ -38,6 +54,7 @@ public class Product {
         this.name = name;
     }
 
+    // Get category
     public String getCategory() {
         return category;
     }
@@ -46,6 +63,7 @@ public class Product {
         this.category = category;
     }
 
+    // Get price
     public double getPrice() {
         return price;
     }
@@ -54,6 +72,7 @@ public class Product {
         this.price = price;
     }
 
+    // Get stock
     public int getStock() {
         return stock;
     }
@@ -62,6 +81,7 @@ public class Product {
         this.stock = stock;
     }
 
+    // Get image URL
     public String getImageUrl() {
         return imageUrl;
     }
