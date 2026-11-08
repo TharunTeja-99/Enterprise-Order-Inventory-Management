@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopFlow | Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <div class="brand">Shop<span>Flow</span></div>
+        <p class="side-label">MAIN MENU</p>
+
+        <button class="nav active" data-section="dashboard">Dashboard</button>
+        <button class="nav" data-section="products">Products</button>
+        <button class="nav" data-section="customers">Customers</button>
+        <button class="nav" data-section="orders">Orders</button>
+
+        <div class="sidebar-bottom">
+            <p>ShopFlow Management</p>
+            <small>Order & Inventory System</small>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <h2 id="page-title">Dashboard</h2>
+                <p>Welcome to ShopFlow Management System</p>
+            </div>
+            <div class="admin">Administrator</div>
+        </header>
+
+        <section id="dashboard" class="section active-section">
+
+            <div class="welcome">
+                <div>
+                    <h2>Business Overview</h2>
+                    <p>Monitor your products, customers and orders.</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Total Products</p>
+                    <h2 id="total-products">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Customers</p>
+                    <h2 id="total-customers">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Total Orders</p>
+                    <h2 id="total-orders">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Available Stock</p>
+                    <h2 id="total-stock">0</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Recent Orders</h3>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="products" class="section">
+
+            <div class="panel">
+                <h3 id="product-form-title">Add New Product</h3>
+
+                <form id="product-form" class="form-grid">
+                    <input type="hidden" id="product-id">
+
+                    <input id="product-name" placeholder="Product name" required>
+                    <input id="product-category" placeholder="Category" required>
+                    <input id="product-price" type="number" min="0.01"
+                           step="0.01" placeholder="Price" required>
+                    <input id="product-stock" type="number" min="0"
+                           placeholder="Stock quantity" required>
+
+                    <button type="submit" class="primary-btn">Save Product</button>
+                    <button type="button" id="cancel-edit"
+                            class="secondary-btn hidden">Cancel Edit</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Product Inventory</h3>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="customers" class="section">
+
+            <div class="panel">
+                <h3>Register Customer</h3>
+
+                <form id="customer-form" class="form-grid">
+                    <input id="customer-name" placeholder="Customer name" required>
+                    <input id="customer-email" type="email"
+                           placeholder="Email address" required>
+                    <input id="customer-phone" placeholder="Phone number" required>
+                    <button type="submit" class="primary-btn">Add Customer</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h3>Customer List</h3>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customer-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="orders" class="section">
+
+            <div class="panel">
+                <h3>Create New Order</h3>
+
+                <form id="order-form" class="form-grid">
+                    <select id="order-customer" required>
+                        <option value="">Select customer</option>
+                    </select>
+
+                    <select id="order-product" required>
+                        <option value="">Select product</option>
+                    </select>
+
+                    <input id="order-quantity" type="number"
+                           min="1" value="1" required>
+
+                    <button type="submit" class="primary-btn">Place Order</button>
+                </form>
+
+                <p class="hint">
+                    Each order currently contains one product.
+                    You can create multiple orders for the same customer.
+                </p>
+            </div>
+
+            <div class="panel">
+                <h3>Order History</h3>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Update Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-list"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+
+        <div id="message" class="message"></div>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
