@@ -1,220 +1,639 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopFlow | Management Dashboard</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ShopFlow | Enterprise Order & Inventory Management</title>
+
+    <meta name="description"
+          content="ShopFlow Order and Inventory Management Dashboard">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<div class="layout">
+<div class="app-layout">
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
 
     <aside class="sidebar">
-        <div class="brand">Shop<span>Flow</span></div>
-        <p class="side-label">MAIN MENU</p>
 
-        <button class="nav active" data-section="dashboard">Dashboard</button>
-        <button class="nav" data-section="products">Products</button>
-        <button class="nav" data-section="customers">Customers</button>
-        <button class="nav" data-section="orders">Orders</button>
+        <h1 class="logo">
+            Shop<span>Flow</span>
+        </h1>
 
-        <div class="sidebar-bottom">
-            <p>ShopFlow Management</p>
+        <p class="menu-heading">Main Menu</p>
+
+        <nav class="sidebar-menu">
+
+            <a href="#dashboard" class="active">
+                Dashboard
+            </a>
+
+            <a href="#products">
+                Products
+            </a>
+
+            <a href="#customers">
+                Customers
+            </a>
+
+            <a href="#orders">
+                Orders
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <div>ShopFlow Management</div>
+
             <small>Order & Inventory System</small>
+
         </div>
+
     </aside>
 
-    <main class="main">
 
-        <header class="topbar">
-            <div>
-                <h2 id="page-title">Dashboard</h2>
-                <p>Welcome to ShopFlow Management System</p>
-            </div>
-            <div class="admin">Administrator</div>
-        </header>
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
 
-        <section id="dashboard" class="section active-section">
+    <main class="main-content">
 
-            <div class="welcome">
+        <!-- Notification -->
+        <div id="message" class="message"></div>
+
+
+        <!-- ======================================
+             DASHBOARD
+        ======================================= -->
+
+        <section id="dashboard">
+
+            <header class="topbar">
+
                 <div>
-                    <h2>Business Overview</h2>
-                    <p>Monitor your products, customers and orders.</p>
+
+                    <h1>Dashboard</h1>
+
+                    <p>
+                        Welcome to ShopFlow Management System
+                    </p>
+
                 </div>
+
+                <div class="admin-badge">
+                    Administrator
+                </div>
+
+            </header>
+
+
+            <!-- Welcome Banner -->
+
+            <div class="welcome-banner">
+
+                <h2>Business Overview</h2>
+
+                <p>
+                    Monitor your products, customers and orders.
+                </p>
+
             </div>
 
-            <div class="stats">
+
+            <!-- Dashboard Statistics -->
+
+            <div class="dashboard-stats">
+
                 <div class="stat-card">
+
                     <p>Total Products</p>
+
                     <h2 id="total-products">0</h2>
+
                 </div>
 
+
                 <div class="stat-card">
+
                     <p>Total Customers</p>
+
                     <h2 id="total-customers">0</h2>
+
                 </div>
 
+
                 <div class="stat-card">
+
                     <p>Total Orders</p>
+
                     <h2 id="total-orders">0</h2>
+
                 </div>
 
+
                 <div class="stat-card">
+
                     <p>Available Stock</p>
+
                     <h2 id="total-stock">0</h2>
+
                 </div>
+
             </div>
 
-            <div class="panel">
-                <h3>Recent Orders</h3>
-                <div class="table-wrap">
+
+            <!-- Recent Orders -->
+
+            <div class="content-card">
+
+                <h2>Recent Orders</h2>
+
+                <div class="table-wrapper">
+
                     <table>
+
                         <thead>
+
                             <tr>
                                 <th>Order ID</th>
                                 <th>Customer</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                             </tr>
+
                         </thead>
-                        <tbody id="recent-orders"></tbody>
-                    </table>
-                </div>
-            </div>
 
-        </section>
+                        <tbody id="recent-orders">
 
-        <section id="products" class="section">
-
-            <div class="panel">
-                <h3 id="product-form-title">Add New Product</h3>
-
-                <form id="product-form" class="form-grid">
-                    <input type="hidden" id="product-id">
-
-                    <input id="product-name" placeholder="Product name" required>
-                    <input id="product-category" placeholder="Category" required>
-                    <input id="product-price" type="number" min="0.01"
-                           step="0.01" placeholder="Price" required>
-                    <input id="product-stock" type="number" min="0"
-                           placeholder="Stock quantity" required>
-
-                    <button type="submit" class="primary-btn">Save Product</button>
-                    <button type="button" id="cancel-edit"
-                            class="secondary-btn hidden">Cancel Edit</button>
-                </form>
-            </div>
-
-            <div class="panel">
-                <h3>Product Inventory</h3>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Product</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Stock</th>
-                                <th>Actions</th>
+                                <td colspan="4">
+                                    Loading orders...
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody id="product-list"></tbody>
+
+                        </tbody>
+
                     </table>
+
                 </div>
+
             </div>
 
         </section>
 
-        <section id="customers" class="section">
 
-            <div class="panel">
-                <h3>Register Customer</h3>
+        <!-- ======================================
+             PRODUCTS SECTION
+        ======================================= -->
 
-                <form id="customer-form" class="form-grid">
-                    <input id="customer-name" placeholder="Customer name" required>
-                    <input id="customer-email" type="email"
-                           placeholder="Email address" required>
-                    <input id="customer-phone" placeholder="Phone number" required>
-                    <button type="submit" class="primary-btn">Add Customer</button>
-                </form>
-            </div>
+        <section id="products">
 
-            <div class="panel">
-                <h3>Customer List</h3>
+            <header class="page-header">
 
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                            </tr>
-                        </thead>
-                        <tbody id="customer-list"></tbody>
-                    </table>
+                <div>
+
+                    <h1>Product Management</h1>
+
+                    <p>
+                        Manage your products and inventory.
+                    </p>
+
                 </div>
+
+            </header>
+
+
+            <div class="section-grid">
+
+
+                <!-- Add Product Form -->
+
+                <div class="form-card">
+
+                    <h2 id="product-form-title">
+                        Add New Product
+                    </h2>
+
+                    <form id="product-form">
+
+                        <!-- Hidden Product ID -->
+
+                        <input type="hidden"
+                               id="product-id">
+
+
+                        <!-- Product Name -->
+
+                        <div class="form-group">
+
+                            <label for="product-name">
+                                Product Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="product-name"
+                                placeholder="Enter product name"
+                                required>
+
+                        </div>
+
+
+                        <!-- Category -->
+
+                        <div class="form-group">
+
+                            <label for="product-category">
+                                Category
+                            </label>
+
+                            <select id="product-category" required>
+
+                                <option value="">
+                                    Select Category
+                                </option>
+
+                                <option value="Electronics">
+                                    Electronics
+                                </option>
+
+                                <option value="Accessories">
+                                    Accessories
+                                </option>
+
+                                <option value="Audio">
+                                    Audio
+                                </option>
+
+                                <option value="Furniture">
+                                    Furniture
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Price -->
+
+                        <div class="form-group">
+
+                            <label for="product-price">
+                                Product Price (₹)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="product-price"
+                                placeholder="Enter price"
+                                min="0"
+                                step="0.01"
+                                required>
+
+                        </div>
+
+
+                        <!-- Stock -->
+
+                        <div class="form-group">
+
+                            <label for="product-stock">
+                                Available Stock
+                            </label>
+
+                            <input
+                                type="number"
+                                id="product-stock"
+                                placeholder="Enter stock quantity"
+                                min="0"
+                                required>
+
+                        </div>
+
+
+                        <!-- Buttons -->
+
+                        <div class="form-actions">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+                                Save Product
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-edit"
+                                class="btn btn-secondary">
+                                Clear
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Product List -->
+
+                <div class="list-card">
+
+                    <div class="section-heading">
+
+                        <h2>Available Products</h2>
+
+                    </div>
+
+                    <div id="product-list" class="product-grid">
+
+                        <div class="empty-state">
+                            Loading products...
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </section>
 
-        <section id="orders" class="section">
 
-            <div class="panel">
-                <h3>Create New Order</h3>
+        <!-- ======================================
+             CUSTOMERS SECTION
+        ======================================= -->
 
-                <form id="order-form" class="form-grid">
-                    <select id="order-customer" required>
-                        <option value="">Select customer</option>
-                    </select>
+        <section id="customers">
 
-                    <select id="order-product" required>
-                        <option value="">Select product</option>
-                    </select>
+            <header class="page-header">
 
-                    <input id="order-quantity" type="number"
-                           min="1" value="1" required>
+                <div>
 
-                    <button type="submit" class="primary-btn">Place Order</button>
-                </form>
+                    <h1>Customer Management</h1>
 
-                <p class="hint">
-                    Each order currently contains one product.
-                    You can create multiple orders for the same customer.
-                </p>
-            </div>
+                    <p>
+                        Register and manage your customers.
+                    </p>
 
-            <div class="panel">
-                <h3>Order History</h3>
-
-                <div class="table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Customer</th>
-                                <th>Items</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th>Update Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="order-list"></tbody>
-                    </table>
                 </div>
+
+            </header>
+
+
+            <div class="section-grid">
+
+
+                <!-- Customer Registration Form -->
+
+                <div class="form-card">
+
+                    <h2>Register New Customer</h2>
+
+                    <form id="customer-form">
+
+
+                        <div class="form-group">
+
+                            <label for="customer-name">
+                                Customer Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customer-name"
+                                placeholder="Enter customer name"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="customer-email">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                id="customer-email"
+                                placeholder="Enter email address"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="customer-phone">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="customer-phone"
+                                placeholder="Enter phone number">
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+                            Register Customer
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Customer List -->
+
+                <div class="list-card">
+
+                    <h2>Registered Customers</h2>
+
+                    <div id="customer-list" class="customer-grid">
+
+                        <div class="empty-state">
+                            Loading customers...
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </section>
 
-        <div id="message" class="message"></div>
+
+        <!-- ======================================
+             ORDERS SECTION
+        ======================================= -->
+
+        <section id="orders">
+
+            <header class="page-header">
+
+                <div>
+
+                    <h1>Order Management</h1>
+
+                    <p>
+                        Create orders and track order status.
+                    </p>
+
+                </div>
+
+            </header>
+
+
+            <div class="section-grid">
+
+
+                <!-- Place New Order -->
+
+                <div class="form-card">
+
+                    <h2>Place New Order</h2>
+
+                    <form id="order-form">
+
+
+                        <!-- Customer Selection -->
+
+                        <div class="form-group">
+
+                            <label for="order-customer">
+                                Select Customer
+                            </label>
+
+                            <select
+                                id="order-customer"
+                                required>
+
+                                <option value="">
+                                    Select Customer
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Product Selection -->
+
+                        <div class="form-group">
+
+                            <label for="order-product">
+                                Select Product
+                            </label>
+
+                            <select
+                                id="order-product"
+                                required>
+
+                                <option value="">
+                                    Select Product
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Quantity -->
+
+                        <div class="form-group">
+
+                            <label for="order-quantity">
+                                Quantity
+                            </label>
+
+                            <input
+                                type="number"
+                                id="order-quantity"
+                                value="1"
+                                min="1"
+                                required>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary">
+                            Place Order
+                        </button>
+
+                    </form>
+
+                </div>
+
+
+                <!-- Order List -->
+
+                <div class="list-card">
+
+                    <h2>All Orders</h2>
+
+                    <div id="order-list" class="order-grid">
+
+                        <div class="empty-state">
+                            Loading orders...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FOOTER
+        ======================================= -->
+
+        <footer class="sidebar-footer"
+                style="display: none;">
+
+            ShopFlow - Order & Inventory Management
+
+        </footer>
 
     </main>
+
 </div>
 
-<script src="script.js"></script>
+
+<!-- ==========================================
+     JAVASCRIPT
+=========================================== -->
+
+<script src="script.js" defer></script>
+
 </body>
+
 </html>
