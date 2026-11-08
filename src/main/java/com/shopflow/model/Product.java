@@ -7,18 +7,19 @@ public class Product {
     private String category;
     private double price;
     private int stock;
+    private String imageUrl;
 
     public Product() {
     }
 
     public Product(Long id, String name, String category,
-                   double price, int stock) {
-
+                   double price, int stock, String imageUrl) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.stock = stock;
+        this.imageUrl = imageUrl;
     }
 
     public Long getId() {
@@ -59,5 +60,13 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
